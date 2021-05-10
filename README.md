@@ -9,6 +9,8 @@ The website is very easy to use. When you first load a the webpage all of the in
 In order to filer the seach you need only input your criteria into the seach bars on the left
 ![image](https://user-images.githubusercontent.com/77762219/117591217-50d57600-b0e8-11eb-887a-2f8bd4bf5215.png)
 
+
+
 This will filer the list on the right by whatever is input into the search criteria
 ![image](https://user-images.githubusercontent.com/77762219/117591202-33a0a780-b0e8-11eb-9f9f-992e5dc0a83d.png)
 

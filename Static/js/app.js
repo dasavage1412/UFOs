@@ -1,21 +1,16 @@
-// from data.js
+
 const tableData = data;
 
-// get table references
 var tbody = d3.select("tbody");
 
 function buildTable(data) {
-  // First, clear out any existing data
+
   tbody.html("");
 
-  // Next, loop through each object in the data
-  // and append a row and cells for each value in the row
   data.forEach((dataRow) => {
-    // Append a row to the table body
+
     let row = tbody.append("tr");
 
-    // Loop through each field in the dataRow and add
-    // each value as a table cell (td)
     Object.values(dataRow).forEach((val) => {
       let cell = row.append("td");
       cell.text(val);
@@ -23,33 +18,52 @@ function buildTable(data) {
   });
 }
 
-// 1. Create a variable to keep track of all the filters as an object.
-var filters = {};
+var filters = {}
 
-// 3. Use this function to update the filters. 
-function updateFilters () {
+function updateFilters() {
+
+  
   let changedElement = d3.select(this);
-
+  console.log(changedElement);
+  
   let elementValue = changedElement.property("value");
   console.log(elementValue);
-
-  let filterId = changedElement.attr("id");
-  console.log(filerId);
-
+  
+  let filterID = changedElement.attr("id")
+  console.log(filterID);
+  
   if (elementValue) {
-    filters[filterId]= elementValue;
+    filters[filterID] = elementValue;
   }
   else {
-    delete filters[filterId];
+    delete filters[filterID];
   }
 
-  updateTable();
+
+  
+  filterTable();
 
 }
 
-function updateTable() { 
 
-d3.selectALL("input").on("change", updateFilters);}
+function filterTable() {
+
   
-  // Build the table when the page loads
-  buildTable(tableData);
+  let filteredData = tableData;
+
+  
+  
+  Object.entries(filters).forEach(([key, value]) => {
+
+    filteredData = filteredData.filter(row => row[key] === value)
+  })
+
+  
+  buildTable(filteredData);
+}
+
+
+d3.selectAll("input").on("change", updateFilters);
+
+
+buildTable(tableData);
